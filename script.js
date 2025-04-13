@@ -9,32 +9,12 @@ let showList=document.querySelector(".show-list");
 let toggle1=document.querySelector(".toggle");
 let listul=document.querySelector(".list-ul")
 
-window.addEventListener("DOMContentLoaded", () => {
-  const todos = JSON.parse(localStorage.getItem("todos")) || [];
-  const completed = JSON.parse(localStorage.getItem("completed")) || [];
-
-  todos.forEach(text => {
-    const item = createItem(text); // تابعی که آیتم می‌سازه
-    toDoList.appendChild(item);
-  });
-
-  completed.forEach(text => {
-    const item = createItem(text); // همون تابع ولی بفرستش به completed
-    addToCompletedList(item, text);
-  });
-});
 
 
 
 
 
-function saveLists() {
-  const todos = Array.from(todoList.children).map(item => item.querySelector("span").textContent);
-  const completed = Array.from(completedList.children).map(item => item.querySelector("span").textContent);
 
-  localStorage.setItem("todos", JSON.stringify(todos));
-  localStorage.setItem("completed", JSON.stringify(completed));
-}
 
 arrowIcon.addEventListener("click", () => {
   const input = inputValue.value.trim();
@@ -67,14 +47,14 @@ arrowIcon.addEventListener("click", () => {
   let check = newItem.querySelector(".check-icon");
   trash.addEventListener("click", () => {
     deleteItem(newItem);
-    saveLists()
+    
   });
 
 
   check.addEventListener("click", () => {
     addToCompletedList(newItem, input);
     emptymessage.classList="hidden"
-    saveLists()
+    
   });
 
   return newItem;
@@ -118,12 +98,6 @@ showList.addEventListener("click",()=>{
   
 })
 
-function saveLists() {
-  const todos = Array.from(todoList.children).map(item => item.querySelector("span").textContent);
-  const completed = Array.from(completedList.children).map(item => item.querySelector("span").textContent);
 
-  localStorage.setItem("todos", JSON.stringify(todos));
-  localStorage.setItem("completed", JSON.stringify(completed));
-}
 
 
